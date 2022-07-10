@@ -12,3 +12,13 @@ def tag(name, *content, cls=None, ** attrs):
                          (name, attr_str, c, name) for c in content)
     else:
         return '<%s%s />' % (name, attr_str)
+
+print(tag('br'))
+print(tag('p', 'hello'))
+print(tag('p', 'hello', 'world'))
+print(tag('p', 'hello', id=33))
+print(tag('p', 'hello', 'world', cls='sidebar'))
+print(tag(content='testing', name="img"))
+
+my_tag = {'name':'img', 'title':'Sunset Boulevard', 'src':'sunset.jpg', 'cls':'framed'}
+print(tag(**my_tag))
