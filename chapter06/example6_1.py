@@ -1,4 +1,4 @@
-from abc import ABC, abstractmethod
+from abc import ABC, abstractclassmethod
 from collections import namedtuple
 
 Customer = namedtuple('Customer', 'name fidelity')
@@ -34,7 +34,7 @@ class Order: # Context
         print("<Order total: ", self.total(), " due: ", self.due(), ">")
 
 class Promotion(ABC):
-    @abstractmethod
+    @abstractclassmethod
     def discount(self, order):
         pass
 
