@@ -2,6 +2,7 @@ from array import array
 import reprlib
 import math
 
+
 class Vector:
     typecode = 'd'
 
@@ -31,9 +32,24 @@ class Vector:
 
     def __bool__(self):
         return bool(abs(self))
-    
+
+    def __len__(self):
+        return len(self._components)
+
+    def __getitem__(self, index):
+        return self._components[index]
+
     @classmethod
     def frombytes(cls, octets):
         typecode = chr(octets[0])
         memv = memoryview(octets[1:]).cast(typecode)
         return cls(memv)
+
+
+v1 = Vector([3, 4, 5])
+print(len(v1))
+
+print(v1[0], v1[-1])
+
+v7 = Vector(range(7))
+print(v7[1:4])
