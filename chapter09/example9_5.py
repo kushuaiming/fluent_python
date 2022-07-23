@@ -1,6 +1,7 @@
 from array import array
 import math
 
+
 class Vector2d:
     typecode = 'd'
 
@@ -30,3 +31,13 @@ class Vector2d:
 
     def __bool__(self):
         return bool(abs(self))
+
+    def __format__(self, fmt_spec=''):
+        components = (format(c, fmt_spec) for c in self)
+        return '({}, {})'.format(*components)
+
+    @classmethod
+    def frombytes(cls, octets):
+        typecode = chr(octets[0])
+        memv = memoryview(octets[1:]).cast(typecode)
+        return cls(*memv)
