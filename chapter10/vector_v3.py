@@ -18,8 +18,8 @@ class Vector:
         components = components[components.find('['):-1]
         return 'Vector({})'.format(components)
 
-    def __str__(self):
-        return str(tuple(self))
+    # def __str__(self):
+    #     return str(tuple(self))
 
     def __bytes__(self):
         return (bytes([ord(self.typecode)]) +
@@ -36,6 +36,12 @@ class Vector:
 
     def __len__(self):
         return len(self._components)
+    
+    @classmethod
+    def frombytes(cls, octets):
+        typecode = chr(octets[0])
+        memv = memoryview(octets[1:]).cast(typecode)
+        return cls(memv)
 
     def __getitem__(self, index):
         cls = type(self)
@@ -72,9 +78,8 @@ class Vector:
                 raise AttributeError(msg)
         super.__setattr__(name, value)
 
-
-@classmethod
-def frombytes(cls, octets):
-    typecode = chr(octets[0])
-    memv = memoryview(octets[1:]).cast(typecode)
-    return cls(memv)
+v = Vector(range(5))
+print(v)
+print(v.x)
+v.x = 10
+print(v)
