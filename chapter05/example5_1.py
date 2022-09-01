@@ -4,3 +4,4 @@ def factorial(n):
 
 print(factorial(42))
 print(factorial.__doc__)
+print(type(factorial))
